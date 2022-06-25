@@ -24,6 +24,7 @@ namespace EqPlus
     {
         static Start()
         {
+            // https://harmony.pardeike.net/articles/patching.html
             Harmony harmony = new Harmony( "Arvkus.EqPlus" );
             harmony.PatchAll( Assembly.GetExecutingAssembly() );
         }

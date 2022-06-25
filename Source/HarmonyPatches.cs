@@ -21,12 +21,11 @@ namespace EqPlus
     // Pawn_InventoryTracker - Gear Inventory
 
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "DropAllEquipment")]
-    public class StopDrop
+    public class DropPatch
     { 
         private static bool Prefix(ref IntVec3 pos, bool forbid, Pawn_EquipmentTracker __instance){
-            bool isDowned = __instance.pawn.Downed;
-            bool isDead = __instance.pawn.Dead;
-            return isDead; // if dead - drop
+            if(forbid == false) return true; // When stripping `forbid` is false. Drop weapons with apparel.
+            return __instance.pawn.Dead; // if dead - dont skip
             // return false; // skip original method
         }
     }
